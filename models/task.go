@@ -5,4 +5,6 @@ type Task struct {
 	Title       string `json:"title"`
 	Description string `json:"description"`
 	IsComplete  bool   `json:"is_complete"`
+	Priority    string `json:"priority"`
+	Category    string `json:"category"`
 }

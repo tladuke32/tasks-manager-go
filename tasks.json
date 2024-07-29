@@ -28,5 +28,17 @@
   "title": "New Added Task Number 5?",
   "description": "Task added after trying to add multiple tasks within  single json file, could not complete do to suspected formatting of json structure in code not calling for a map of json data",
   "is_complete": false
+ },
+ "6": {
+  "id": 6,
+  "title": "Dinner",
+  "description": "Go and check with Elena to find out what else needs to be done to make tonights dinner.",
+  "is_complete": false
+ },
+ "7": {
+  "id": 7,
+  "title": "Chores",
+  "description": "dinner",
+  "is_complete": false
  }
 }
