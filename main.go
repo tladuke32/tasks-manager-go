@@ -53,7 +53,7 @@ func handleSignup(w http.ResponseWriter, r *http.Request) {
 	}
 	user.Password = string(hashedPassword)
 	createdUser := userStorage.CreateUser(user)
-	json.NewEncoder(w).Encode(createdUser)
+	_ = json.NewEncoder(w).Encode(createdUser)
 }
 
 func handleLogin(w http.ResponseWriter, r *http.Request) {
@@ -136,7 +136,7 @@ func handleTasks(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, "Request cancelled", http.StatusRequestTimeout)
 			return
 		default:
-			json.NewEncoder(w).Encode(tasks)
+			_ = json.NewEncoder(w).Encode(tasks)
 		}
 	case http.MethodPost:
 		var task models.Task
@@ -150,7 +150,7 @@ func handleTasks(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, "Request cancelled", http.StatusRequestTimeout)
 			return
 		default:
-			json.NewEncoder(w).Encode(createdTask)
+			_ = json.NewEncoder(w).Encode(createdTask)
 			for client := range clients {
 				client <- createdTask
 			}
@@ -182,7 +182,7 @@ func handleTaskByID(w http.ResponseWriter, r *http.Request) {
 				http.Error(w, "Task not found", http.StatusNotFound)
 				return
 			}
-			json.NewEncoder(w).Encode(task)
+			_ = json.NewEncoder(w).Encode(task)
 		}
 	case http.MethodPut:
 		var updatedTask models.Task
@@ -200,7 +200,7 @@ func handleTaskByID(w http.ResponseWriter, r *http.Request) {
 				http.Error(w, "Task not found", http.StatusNotFound)
 				return
 			}
-			json.NewEncoder(w).Encode(task)
+			_ = json.NewEncoder(w).Encode(task)
 		}
 	case http.MethodDelete:
 		deleted := taskStorage.DeleteTask(id)
@@ -244,7 +244,7 @@ func handleEvents(w http.ResponseWriter, r *http.Request) {
 	for {
 		select {
 		case task := <-client:
-			json.NewEncoder(w).Encode(task)
+			_ = json.NewEncoder(w).Encode(task)
 			flusher.Flush()
 		case <-notify:
 			return

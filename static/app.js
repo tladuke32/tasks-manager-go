@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username, password })
+            body: JSON.stringify({username, password})
         });
         signupForm.reset();
     });
@@ -29,13 +29,13 @@ document.addEventListener('DOMContentLoaded', () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username, password })
+            body: JSON.stringify({username, password})
         });
 
         if (response.ok) {
             auth.style.display = 'none';
             taskManager.style.display = 'block';
-            loadTasks();
+            await loadTasks();
             subscribeToEvents();
         }
         loginForm.reset();
@@ -49,11 +49,11 @@ document.addEventListener('DOMContentLoaded', () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ title })
+            body: JSON.stringify({title})
         });
 
         if (response.ok) {
-            loadTasks();
+            await loadTasks();
         }
         taskForm.reset();
     });
@@ -78,3 +78,4 @@ document.addEventListener('DOMContentLoaded', () => {
             taskList.appendChild(li);
         };
     }
+});
